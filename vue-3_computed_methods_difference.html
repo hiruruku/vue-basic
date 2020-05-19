@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!-- クリックイベントでcounterが増減する -->
+  <button v-on:click="counter++">Increase</button>
+  <button v-on:click="counter--">Decrease</button><br>
+  <!-- secondCounter のデータプロパティは、counterプロパティとは関係がない -->
+  <button v-on:click="secondCounter++">secondCounter Iecrease</button>
+  <p>Counter：{{ counter }}</p>
+  <p>SecondCounter{{ secondCounter}}</p>
+  <!-- 算出プロパティoutputでは、データプロパティcounterを使った計算をしている
+  　　1.v-on:click="output"とはできない。
+　　　2.自身の算出に関係がないかぎり再計算されず、キャッシュが残る。
+　　　3.引数は取れない　　　
+　　　結論として取得用途の計算は算出プロパティを使う -->
+  <p>Result Computed: {{ output }}</p>
+  <!-- methods
+    1.メソッドのロジックに関係ないデータ変更（secondCounter)による
+    　再描画でも毎回評価（実行）する。データはキャッシュされない
+    consoleでログをみると,secondCounterボタンでもlogが出る。
+    毎回、再描画事に事に常にdataをupdateしたいという意図があれば、methodsを使用する。-->
+  <p> Result Methods: {{ result() }}</p>
+</div>
+<script>
+  new Vue ({
+	el:'#app',
+  data: {
+    counter: 10,
+    secondCounter: 10
+  },
+  computed: {
+    output: function() {
+      console.log('computed');
+      return this.counter > 15 ? 'Greater 15' : 'Smaller than 15';
+    }
+  },
+  methods: {
+    result() {
+      console.log('Method');
+      return this.counter > 15 ? 'Greater 15' : 'Smaller 15';
+    },
+  }
+  });
+</script>
+</body>
+</html>
