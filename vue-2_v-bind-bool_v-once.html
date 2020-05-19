@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!-- v-onceは初回だけデータをつなげる。consoleでapp.message="some message";としても表示変わらず-->
+ <p v-once>{{message}}</p>
+<!-- disabled属性には、trueやfalseなどの値をもつデータプロパティをbindする-->
+ <input type="button" value="クリック" v-bind:disabled="flag" v-on:click="onclick()"/>
+</div>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'If you click the button,then you make it disabled.',
+    flag:false
+  },
+  methods: {
+    onclick: function(){
+      if(this.flag === false){
+      this.flag = true;
+     }
+   }
+  }
+})
+</script>
+</body>
+</html>
