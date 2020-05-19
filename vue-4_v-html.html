@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!-- v-onceは初回だけデータをつなげる。consoleでapp.message="some message";としても表示変わらず-->
+ <p>{{ url }}</p>
+ <p v-html="url"></p>
+</div>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    url: '<a href="https://sunlabs.blue/"> Sunlabs.blue </a>'
+  }
+});
+</script>
+</body>
+</html>
