@@ -8,8 +8,11 @@
 </head>
 <body>
 <div id="app">
-<!-- v-onceは初回だけデータをつなげる。consoleでapp.message="some message";としても表示変わらず-->
+<!-- Mastashe 構文では、HTMLContentsになる。vueはHTMLタグをレンダリングしない。
+  　基本textだけ。xss攻撃対策でもある -->
  <p>{{ url }}</p>
+<!-- HTMLタグをレンダリングしたい、RawHTMLのタグとして、propertyを表示したい場合
+     以下のようにする。NGパターン：<p v-html>{{url}}</p>-->
  <p v-html="url"></p>
 </div>
 <script>

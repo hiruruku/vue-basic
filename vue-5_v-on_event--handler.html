@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- v-on:DOMイベント="methodsのfunctionなど"
+    　 　DOMイベントとイベント発火時の処理をつなげる-->
+    <button v-on:click="handler">Clock in</button>
+    <p>You started to work at {{timeStamp}} .</p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        timeStamp: ''
+      },
+      methods: {
+        handler: function() {
+          this.timeStamp = new Date().toLocaleString();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
