@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <form>
+      <!-- input -->
+      <label for="name">Name：</label>
+      <input type="text" id="name" v-model="myName" /><br />
+      <!-- radio button -->
+      <div>Which is the cutest pet do you think in the next？</div>
+      <label for="rabbit">American fuzzy lop</label>
+      <input type="radio" id="rabbit" value="American Fuzzy Lop" v-model="pet" /><br />
+      <label for="cat">Munchikin</label>
+      <input type="radio" id="cat" value="Munchikan" v-model="pet" /><br />
+      <label for="dog">Welsh corgi</label>
+      <input type="radio" id="dog" value="Welsh corgi" v-model="pet" /><br />
+      <!-- checkbox -->
+      <label for="subscribe">subscribe to Cure Boldness booklet </label>
+      <input type="checkbox" id="subscribe" v-model="subscribe" />
+      <!-- check box multi -->
+      <div>Which OS do you use？</div>
+      <label for="ubuntu">ubuntu</label>
+      <input type="checkbox" id="ubuntu" value="ubuntu" v-model="os" />
+      <label for="mac">macOS</label>
+      <input type="checkbox" id="mac" value="macOS" v-model="os" />
+      <label for="crome">cromeOS</label>
+      <input type="checkbox" id="cromeOS" value="cromeOS" v-model="os" />
+      <label for="windows">Windows</label>
+      <input type="checkbox" id="windows" value="windows" v-model="os" /><br />
+      <!-- select box -->
+      <!-- 下記の例はvalueでobjectを渡す-->
+      <label for="hobby">What is your hobby?</label>
+      <select id="hobby" v-model="hobby">
+        <option value="{name:'watching VR', point: 50}">watching VR</option>
+        <option value="{name:'Droan racing', point: 70}">Droan racing</option>
+        <option value="{name:'drawing', point: 40}">drawing</option>
+        <option value="{name:'fishing', point: 35}">fishing</option>
+        <option value="{name:'bird watching', point: 80}">bird watching</option>
+        <option value="{name:'others', point: 50}">others</option>
+      </select>
+    </form>
+  </div>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        myName: 'anonymous',
+        pet: "Munchikan",
+        subscribe: "",
+        os: ["cromeOS"],
+        hobby: {}   //hobbyでdrawingを選択しconsole.log(app.hobby);結果{name:'drawing', point: 40}
+      }
+    });
+  </script>
+</body>
+
+</html>
