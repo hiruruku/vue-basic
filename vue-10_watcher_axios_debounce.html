@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <!-- 公式ページサンプル：_.debounceを使えるlodash,apiと非同期通信するaxiosなど
+    便利なツールを使用することで、vueのコードはかなりコンパクト。
+    https://jp.vuejs.org/v2/guide/computed.html#%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81%E3%83%A3 
+  -->
+  <div id="app">
+    <p>
+      Ask a yes/no question:
+      <input v-model="question">
+    </p>
+    <!-- Question sample:Are squirrels rodents?Answer:Yes,Developer toolなどで確認 -->
+    <p>{{ answer }}</p>
+  </div>
+  <!-- ajax ライブラリの豊富なエコシステムや、汎用的なユーティリティ	-->
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        question: '',
+        answer: 'I cannot give you an answer until you ask a question!'
+      },
+      //watcher
+      watch: {
+        // question プロパティが変更される毎に実行される。
+        question: function (newQuestion, oldQuestion) {
+          this.answer = 'Waiting for you to stop typing...'
+          this.delayGetAnswer()
+        }
+      },
+      created: function () {
+        // _.debounce は特にコストの高い処理の実行を制御するための
+        // lodash の関数です。１文字毎に yesno.wtf/api
+        // にアクセスするのを制限するため、1秒間毎に実行。
+        this.delayGetAnswer = _.debounce(this.getAnswer, 1000)
+      },
+      methods: {
+        getAnswer: function () {
+          //1秒ごとに実行されるが、？がなければ、returnを返し、問合せしない。
+          if (this.question.indexOf('?') === -1) {
+            this.answer = 'Questions usually contain a question mark. ;-)'
+            return
+          }
+          //ajax start
+          this.answer = 'Thinking...'
+          var vm = this
+          axios.get('https://yesno.wtf/api')
+            .then(function (response) {
+              vm.answer = _.capitalize(response.data.answer)
+            })
+            .catch(function (error) {
+              vm.answer = 'Error! Could not reach the API. ' + error
+            })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
