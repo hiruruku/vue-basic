@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="js">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>"Vue.js"</title>
   <script src="vue.js"></script>
 </head>
+
 <body>
-<div id="app">
-<!-- イベントハンドラーの値を省略できる -->
-<form v-on:submit.prevent>
-  <label for="email">メールアドレス：</label>
-  <input id="email" name="email" type="email" />
-  <input type="submit" value="送信" />
-</form>
-<!-- クリックイベントの伝播伝播が止まる-->
-<a href='https://jp.vuejs.org/v2/guide/events.html#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E4%BF%AE%E9%A3%BE%E5%AD%90' v-on:click.stop>vue.jsイベント修飾子</a>
-</div>
-<script>
-  new Vue ({
-	el:'#app',
-  });
-</script>
+  <div id="app">
+    <!-- イベントハンドラーの値を省略できる -->
+    <form v-on:submit.prevent>
+      <label for="email">メールアドレス：</label>
+      <input id="email" name="email" type="email" />
+      <input type="submit" value="送信" />
+    </form>
+    <!-- クリックイベントの伝播伝播が止まる-->
+    <a href='https://jp.vuejs.org/v2/guide/events.html#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E4%BF%AE%E9%A3%BE%E5%AD%90'
+      v-on:click.stop>vue.jsイベント修飾子</a>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+    });
+  </script>
 </body>
+
 </html>

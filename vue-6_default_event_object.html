@@ -1,45 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>"Vue.js"</title>
   <script src="vue.js"></script>
 </head>
+
 <body>
-<div id="app">
-  <!-- イベント発生時自動生成されるイベントオブジェクトをイベントハンドラーに渡す
+  <div id="app">
+    <!-- イベント発生時自動生成されるイベントオブジェクトをイベントハンドラーに渡す
        イベントオブジェクト単体であれば、v-on=DOMイベント=イベントハンドラー
        だけで、vueがイベントオブジェクトをイベントハンドラーに渡す。-->
-  <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+    <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
 
-  <!-- カスタムな引数とイベントオブジェクト両方をイベントハンドラーに渡したい時
+    <!-- カスタムな引数とイベントオブジェクト両方をイベントハンドラーに渡したい時
         v-on:DOMイベント=イベントハンドラー(カスタム引数,$event)
         $eventは決まった名前なので変えることはできない-->
-  <button v-on:click="increase(2,$event)">Click me</button><br>
-  <p>{{ counter }}</p>
-</div>
-<script>
-  new Vue ({
-	el:'#app',
-  data: {
-    counter: 0,
-    x:0,
-    y:0,
-  },
-  methods: {
-　　　
-    increase: function(step,event) {
-      console.log(event.type);
-      this.counter += step;
-    },
-    //イベントオブジェクトを引数で受け取る
-    updateCoordinates: function(event) {
-      this.x = event.clientX;
-      this.y = event.clientY;
-    }
-  }
-});
-</script>
+    <button v-on:click="increase(2,$event)">Click me</button><br>
+    <p>{{ counter }}</p>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0,
+        x: 0,
+        y: 0,
+      },
+      methods: {
+
+        increase: function (step, event) {
+          console.log(event.type);
+          this.counter += step;
+        },
+        //イベントオブジェクトを引数で受け取る
+        updateCoordinates: function (event) {
+          this.x = event.clientX;
+          this.y = event.clientY;
+        }
+      }
+    });
+  </script>
 </body>
+
 </html>

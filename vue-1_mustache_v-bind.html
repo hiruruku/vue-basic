@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>"Vue.js"</title>
   <script src="vue.js"></script>
 </head>
+
 <body>
-<div id="app">
-  <!-- VueインスタンスはDOMと HTML,JSファイルの間のミドルウェアインスタンス-->
-  <!-- マスタッシュ内から{{ }}、dataオブジェクト、メソッドなどメンバーに直接アクセスできる。-->
-  <p>{{ sayHello() }}</P>
-  <!-- v-textは、{{}}と同等.dataオブジェクト、メソッドなどメンバーに直接アクセスできる。-->
-  <p v-text="sayHello()"></p>
-  <!-- HTMLタグの中では マスタッシュ{{ }}は 使用できない v-bind:属性=Vueプロパティ-->
-  <p> - <a v-bind:href="link">Google</a></p>
-  <p> {{ title }} </p>
-  <p v-pre>{{ title }}</p> //v-pre{{}} の機能を無効にし、そのまま文字列で出力する
-  <!-- マスタッシュ内は、{{JSの式OK,文はNG}} -->
-  <p> {{ 3 + 5 }}</p>
-  <p> {{ Math.abs(-10)}}</p>
-</div>
-<script>
-var app = new Vue ({
-	el:'#app',
-  data: {
-    title: 'Hello World!',
-    link: 'http://google.com'
-  },
-  methods: {
-  	sayHello : function() {
-      return this.title; //thisはVueインスタンス。
-    }
-  }
-});
-</script>
+  <div id="app">
+    <!-- VueインスタンスはDOMと HTML,JSファイルの間のミドルウェアインスタンス-->
+    <!-- マスタッシュ内から{{ }}、dataオブジェクト、メソッドなどメンバーに直接アクセスできる。-->
+    <p>{{ sayHello() }}</P>
+    <!-- v-textは、{{}}と同等.dataオブジェクト、メソッドなどメンバーに直接アクセスできる。-->
+    <p v-text="sayHello()"></p>
+    <!-- HTMLタグの中では マスタッシュ{{ }}は 使用できない v-bind:属性=Vueプロパティ-->
+    <p> - <a v-bind:href="link">Google</a></p>
+    <p> {{ title }} </p>
+    <p v-pre>{{ title }}</p> //v-pre{{}} の機能を無効にし、そのまま文字列で出力する
+    <!-- マスタッシュ内は、{{JSの式OK,文はNG}} -->
+    <p> {{ 3 + 5 }}</p>
+    <p> {{ Math.abs(-10)}}</p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        title: 'Hello World!',
+        link: 'http://google.com'
+      },
+      methods: {
+        sayHello: function () {
+          return this.title; //thisはVueインスタンス。
+        }
+      }
+    });
+  </script>
 </body>
+
 </html>
