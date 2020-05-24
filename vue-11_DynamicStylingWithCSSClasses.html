@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+  <style>
+    .demo {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 内容はL29,L30 -->
+  <div id="app">
+    <!-- Class属性を使用して動的にstyleを適用(上記style要素から) -->
+    <!-- v-bind:クラス属性="クラス名" では色々な形式がある。
+     ①.class名をデータプロパティから渡す。
+　　　②.object形式{クラス名:true/false}で直で渡す,
+     ③.vueインスタンスにobjectを格納して返す（ここでは、算術プロパティ）
+　　　④.nest objectで渡す-->
+
+    <!-- ①:class=クラス名を格納したプロパティ -->
+    <div class="demo" :class="color"></div>
+
+    <!-- ②:class属性=objectリテラル形式で { クラス名:ture/false }を渡せる。値にvueデータプロパティ使用 -->
+    <div class="demo" @click="attachRed = !attachRed" :class="{red: attachRed}"></div>
+
+    <!-- ③:class=算術プロパティ名(クラス名のobject）。objectを直に記述ではなくVueインスタンスにいれることでシンプルにはなる。-->
+    <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+
+    <!-- ④:class=nest object クラス名が複数ある場合、CSSの優先度、この場合blue、greenは記述順で優先される -->
+    <div class="demo" :class="[color,{red: attachRed}]"></div>
+    <hr>
+    <!-- inputにクラス名をいれると、色が変わるtwo-way binding -->
+    <input type="text" v-model="color">
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        attachRed: false, //値に状態
+        color: 'blue'　　　　//値にクラス名
+      },
+      computed: {
+        divClasses: function () {
+          return {
+            red: this.attachRed,
+            blue: !this.attachRed
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
