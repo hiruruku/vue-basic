@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Vue.js"</title>
+  <script src="vue.js"></script>
+  <style>
+    .demo {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- DynamicStylingWithout CSS Classes-->
+  <div id="app">
+    <!-- class属性と上記サンプル用style要素でスタイル（特にvueと関係なし） -->
+    <div class="demo"></div>
+    <!-- HTMLのstyle属性に、スタイルを複数記述する（vueと関係なし） -->
+    <div class="demo" style="height: 100px;width:100px;background-color: red;"></div>
+    <!-- ①vueがstyle属性にobjectリテラルをbindする。:style="objectリテラル"
+          名前の形式はケバブケースの場合'background-color'（''で囲う),lowaerCamel形式ではそのままでOK -->
+    　<div class="demo" :style="{height: '100px',width:'100px',backgroundColor: color}"> </div>
+    <!-- ②vueがstyle属性に算術プロパティをbindする。:style="プロパティ"-->
+    <div class="demo" :style="myStyle"></div>
+    <!-- ③vueが style属性に、arrayをbindする。:style="[]"-->
+    <div class="demo" :style="[myStyle,{height: width +'px'}]"></div>
+    <hr>
+    <!-- inputにクラス名をいれると、色が変わるtwo-way binding -->
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        color: 'blue',　　　　//値にクラス名
+        width: 100
+      },
+      computed: {
+        myStyle: function () {
+          return {
+            backgroundColor: this.color,
+            width: this.width + 'px',
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
